@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator chemiczny</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="elements_data.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="title-box">
+        <img class="logo" src="logo.png" alt="logo">
+        <div class="title">Kalkulator chemiczny</div>
+    </div>
+    <div class="input-box">
+        <div class="input" id="input"><pre contenteditable id="input-text" class="input-text" spellcheck="false"></pre></div>
+        <button class="btn" id="calculate-btn">OBLICZ</button>
+    </div>
+    <pre class="output" id="output">
+        <div class="property-name">test: </div><span id="test1" class="property-value">0</span>
+        <div class="property-name">test: </div><span id="test2" class="property-value">0</span>
+    </pre>
+</body>
+</html>
