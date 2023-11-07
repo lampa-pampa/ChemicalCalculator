@@ -55,7 +55,7 @@ body {
     cursor: pointer;
     color: inherit;
     font-weight: inherit;
-    transition: border 500ms, box-shadow 400ms;
+    transition: border 300ms, box-shadow 250ms;
     background-color: inherit;
     animation-duration: 600ms;
 }
@@ -63,6 +63,16 @@ body {
 .btn:hover, .btn:focus-visible {
     border-color: var(--secondary-theme-color);
     box-shadow: 0 0 10px var(--main-theme-color);
+}
+
+.options-btn {
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+}
+
+.options-btn img {
+    width: 1.2em;
 }
 
 .input {
