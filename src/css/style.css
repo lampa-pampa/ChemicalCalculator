@@ -11,12 +11,7 @@ body {
     margin: 0;
     background-color: black;
     color: var(--main-font-color);
-    display: grid;
-    padding-top: 20vh;
-    justify-items: center;
-    align-content: start;
     min-height: 100vh;
-    row-gap: 1em;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     font-weight: 600;
@@ -26,10 +21,26 @@ body {
     box-sizing: border-box;
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr 500px 1fr;
+    padding-top: 20vh;
+    align-items: start;
+    justify-items: center;
+    gap: 1em;
+}
+
+svg {
+    fill: var(--main-font-color);
+    width: 1em;
+}
+
 .title-box {
-    display: flex;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-auto-flow: column;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 0.5em;
 }
 
 .logo {
@@ -40,21 +51,16 @@ body {
     text-shadow: 0 0 5px var(--main-theme-color);
 }
 
-.input-box {
-    display: flex;
-    column-gap: 0.5em;
-}
-
 .btn {
+    font-size: 36px;
     outline: none;
-    font-size: inherit;
-    height: 1.9em;
-    padding: 10px;
+    padding: 12px;
+    display: grid;
+    place-items: center;
     border: 1px solid var(--dark-main-theme-color);
     border-radius: 5px;
     cursor: pointer;
     color: inherit;
-    font-weight: inherit;
     transition: border 300ms, box-shadow 250ms;
     background-color: inherit;
     animation-duration: 600ms;
@@ -65,26 +71,24 @@ body {
     box-shadow: 0 0 10px var(--main-theme-color);
 }
 
-.options-btn {
-    aspect-ratio: 1 / 1;
-    display: grid;
-    place-items: center;
-}
-
-.options-btn img {
-    width: 1.2em;
+.buttons-box {
+    justify-self: start;
+    display: flex;
 }
 
 .input {
-    width: 500px;
-    height: 1.9em;
-    padding: 10px;
+    font-size: 36px;
+    padding-inline: 12px;
+    padding-top: 9px;
     border: 1px solid var(--main-font-color);
     border-radius: 5px;
     cursor: text;
     animation-duration: 600ms;
     transition: border 500ms, box-shadow 400ms;
     position: relative;
+    grid-column: 2 / 3;
+    width: 100%;
+    height: 100%;
 }
 
 .input.active {
@@ -92,26 +96,8 @@ body {
     box-shadow: 0 0 10px var(--main-theme-color);
 }
 
-.input::after {
-    content: "";
-    position: absolute;
-    width: 99.5%;
-    height: 1px;
-    bottom: 0;
-    left: 0.25%;
-    z-index: -1;
-    border-radius: 30%;
-    background-color: var(--main-font-color);
-    transform-origin: center;
-    transition: transform 250ms;
-    transform: scale(0, 1);
-}
-
-.input.active::after {
-    transform: none;
-}
-
 .input-text {
+    font-size: inherit;
     outline: none;
     overflow-x: hidden;
     pointer-events: none;
@@ -131,7 +117,7 @@ pre {
 }
 
 .output {
-    width: 640px;
+    grid-column: 2 / 3;
     overflow-x: hidden;
     animation-duration: 1300ms;
     display: grid;

@@ -1,4 +1,5 @@
-const special_chars = "+ "
+const special_chars = "" 
+const brackets = ""
 const refresh_value_frame_delay = 50
 const refresh_value_frame_rate = 20
 let cur_input_value = ""
@@ -15,9 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("calculate-btn").addEventListener("click", handleCalculateBtnClick)
 })
 
+class ChemicalElement
+{
+    
+}
+
 function handleDocumentClick(e)
 {
-    const music = new Audio("music.mp3")
+    const music = new Audio("src/sounds/music.mp3")
     music.loop = true
     // music.play()
     document.removeEventListener("click", handleDocumentClick)
@@ -58,6 +64,7 @@ function handleInnerInputInput(e)
 function handleCalculateBtnClick(e)
 {
     boom()
+
     smooth_value_refresh(document.getElementById("test1"), 50)
 }
 
@@ -155,7 +162,7 @@ function refresh_value(input)
             else
                 parsed_value += format_str(char, "digit")
         }
-        else if(char == "(" || char == ")")
+        else if(brackets.includes(char))
         {
             parsed_value += format_str(char, "bracket")
         }
@@ -190,7 +197,7 @@ function boom()
     run_animation(document.getElementById("input"), "boom-input")
     run_animation(document.getElementById("calculate-btn"), "boom-btn")
     run_animation(document.getElementById("output"), "fade-in-output") 
-    const music = new Audio("boom.mp3")
+    const music = new Audio("src/sounds/boom.mp3")
     music.play()
 }
 
