@@ -27,7 +27,8 @@ main {
     padding-top: 20vh;
     align-items: start;
     justify-items: center;
-    gap: 1em;
+    column-gap: 0.5em;
+    row-gap: 1em;
 }
 
 svg {
@@ -74,6 +75,7 @@ svg {
 .buttons-box {
     justify-self: start;
     display: flex;
+    column-gap: 0.5em;
 }
 
 .input {
@@ -94,6 +96,25 @@ svg {
 .input.active {
     border-color: var(--main-theme-color);
     box-shadow: 0 0 10px var(--main-theme-color);
+}
+
+.input::after {
+    content: "";
+    position: absolute;
+    width: 99.5%;
+    height: 1px;
+    bottom: 0;
+    left: 0.25%;
+    z-index: -1;
+    border-radius: 30%;
+    background-color: var(--main-font-color);
+    transform-origin: center;
+    transition: transform 250ms;
+    transform: scale(0, 1);
+}
+
+.input.active::after {
+    transform: none;
 }
 
 .input-text {
