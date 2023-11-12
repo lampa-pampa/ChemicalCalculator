@@ -124,7 +124,7 @@ svg {
     pointer-events: none;
 }
 
-.input-text sub, .input-text .digit {
+.input-text .digit {
     color: var(--input-digit-color);
 }
 
