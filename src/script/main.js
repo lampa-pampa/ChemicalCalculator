@@ -1,7 +1,12 @@
-const special_chars = "" 
-const brackets = ""
-const refresh_value_frame_delay = 50
-const refresh_value_frame_rate = 20
+const data = 
+{
+    max_short_name_length: 2,
+    brackets: "",
+    special_chars: "",
+    refresh_value_frame_delay: 50,
+    refresh_value_frame_rate: 20,
+}
+
 let cur_input_value = ""
 let cur_pressed_key = ""
 let cur_cursor_index = 0
@@ -16,9 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("calculate-btn").addEventListener("click", handleCalculateBtnClick)
 })
 
-class ChemicalElement
+class Compound
 {
-    
+    constructor(quantity = 1, elements = {})
+    {
+        this.elements = elements
+        this.quantity = quantity
+    }
+
+    push(element_short_name, element_quantity = 1)
+    {
+        if(!this.elements[element_short_name])
+            this.elements[element_short_name] = element_quantity
+        else
+            this.elements[element_short_name] += element_quantity
+    }
 }
 
 function handleDocumentClick(e)
@@ -63,12 +80,73 @@ function handleInnerInputInput(e)
 
 function handleCalculateBtnClick(e)
 {
-    boom()
-
-    smooth_value_refresh(document.getElementById("test1"), 50)
+    try
+    {
+        const compound = parse_input_value(document.getElementById("input-text").textContent)
+        show_element_data(compound)
+    }
+    catch(error)
+    {
+        console.log(error)
+    }
 }
 
 /**********************************************************/
+
+function parse_input_value(value)
+{
+    const compound = new Compound();
+    let read_index = 0
+    let str_quantity = ""
+    while(/[0-9]/.test(value[read_index]))
+    {
+        str_quantity += value[read_index]
+        ++read_index
+    }
+
+    const quantity = parseInt(str_quantity)
+    if(!isNaN(quantity))
+        compound.quantity = quantity
+
+    while(value[read_index])
+    {
+        found = ""
+        for(let j = data.max_short_name_length; j > 0; --j)
+        {
+            Object.keys(elements_data).every((key) => {
+                condition = key == value.substr(read_index, j)
+                if(condition)
+                    found = value.substr(read_index, j)
+                return !condition
+            })
+            if(found)
+            {
+                read_index += j
+                break
+            }
+        }
+
+        if(!found)
+            throw new Error(`Zły znak na miejscu: ${read_index + 1}`)
+
+        let str_quantity = ""
+        while(/[0-9]/.test(value[read_index]))
+        {
+            str_quantity += value[read_index]
+            ++read_index
+        }
+        if(str_quantity)
+            compound.push(found, parseInt(str_quantity))
+        else
+            compound.push(found, 1)
+    }
+    return compound
+}
+
+function show_element_data(compound)
+{
+    
+}
 
 function get_selection_index(input, range_container, range_offset)
 {
@@ -119,70 +197,78 @@ function set_cursor_index(index, node)
 
 function number_is_subscripted(value, i)
 {
-    while(/[2-9]/.test(value[i]))
+    while(/[0-9]/.test(value[i]))
     {
         --i
         if(i < 0)
             return false
     }
-    return /[)a-zA-Z]/.test(value[i])
+    return /[a-zA-Z]/.test(value[i])
 }
 
-function refresh_value(input)
+function format_input_value(value)
 {
-    parsed_value = ""
-    value = input.textContent
+    let parsed_value = ""
 
     for(let i = 0; i < value.length; ++i)
     {
         char = value[i]
         
-        if(/[A-Z]/.test(char))
+        if(/[A-Za-z]/.test(char))
         {
-            elements_data.every((elem) => {
-                condition = elem.short_name[0] == char
-                if(condition)
-                    parsed_value += format_str(char, "element")
-                return !condition
-            })   
+            found = ""
+            for(let j = data.max_short_name_length; j > 0; --j)
+            {
+                Object.keys(elements_data).every((key) => {
+                    condition = key.substring(0, j) == value.substr(i, j)
+                    if(condition)
+                        found = value.substr(i, j)
+                    return !condition
+                })
+                if(found)
+                {
+                    for(char of found)
+                        parsed_value += format_char(char, "span", "chemical-element")
+                    i += j - 1
+                    break
+                }
+            }
         }
-        else if(/[a-z]/.test(char))
+        else if(/[0-9]/.test(char))
         {
-            elements_data.every((elem) => {
-                condition = elem.short_name.length == 2 && elem.short_name[0] == value[i - 1] && elem.short_name[1] == char
-                if(condition)
-                    parsed_value += format_str(char, "element")
-                return !condition
-            })    
+            if(!(char == "0" && !/[0-9]/.test(value[i - 1])))
+            {
+                if(number_is_subscripted(value, i))
+                    parsed_value += format_char(char, "sub", "digit")
+                else
+                    parsed_value += format_char(char, "span", "digit")
+            }
         }
-        else if(/[2-9]/.test(char))
+        else if(data.brackets.includes(char))
         {
-            if(number_is_subscripted(value, i))
-                parsed_value += `<sub>${char}</sub>`
-            else
-                parsed_value += format_str(char, "digit")
+            parsed_value += format_char(char, "span", "bracket")
         }
-        else if(brackets.includes(char))
+        else if(data.special_chars.includes(char))
         {
-            parsed_value += format_str(char, "bracket")
-        }
-        else if(special_chars.includes(char))
-        {
-            parsed_value += format_str(char, "special-char")
+            parsed_value += format_char(char, "span", "special-char")
         }
     }
-
-    input.innerHTML = parsed_value
-
-    if(value == input.textContent)
-        run_animation(input.parentNode, "input-typing")
-    else
-        run_animation(input.parentNode, "input-typing-error")
+    return parsed_value
 }
 
-function format_str(char, cls)
+function refresh_value(input)
 {
-    return `<span class="${cls}">${char}</span>`
+    input.innerHTML = format_input_value(input.textContent)
+    
+    if(cur_input_value == input.textContent)
+        run_animation(input.parentNode, "input-typing-error")
+    else
+        run_animation(input.parentNode, "input-typing")
+}
+
+function format_char(char, tag, cls)
+{
+    return `<${tag} class="${cls}">${char}</${tag}>`
 }
 
 function run_animation(node, animation_name)
@@ -205,8 +291,8 @@ function smooth_value_refresh(node, value)
 {
     node.textContent = 0
     let diff = 1
-    if(value > refresh_value_frame_rate)
-        diff = Math.floor(value / refresh_value_frame_rate)
+    if(value > data.refresh_value_frame_rate)
+        diff = Math.floor(value / data.refresh_value_frame_rate)
     const interval = setInterval(() => {
         const cur_value = parseInt(node.textContent)
         if(cur_value < value)
@@ -218,5 +304,5 @@ function smooth_value_refresh(node, value)
         }
         else
             clearInterval(interval)   
-    }, refresh_value_frame_delay)
+    }, data.refresh_value_frame_delay)
 }
