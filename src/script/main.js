@@ -7,36 +7,52 @@ const data =
     refresh_value_frame_rate: 20,
 }
 
-let cur_input_value = ""
-let cur_pressed_key = ""
-let cur_cursor_index = 0
+let states = 
+{
+    cur_input_value: "",
+    cur_pressed_key: "",
+    cur_cursor_index: 0,
+    mode_list_state: false,
+}
+
+function get_id(id)
+{
+    return document.getElementById(id)
+}
+
+function set_listeners(listeners_data)
+{
+    for(elem of listeners_data)
+    {
+        for(listener of elem.events)
+           get_id(elem.id).addEventListener(listener.type, listener.handler)
+    }    
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", handleDocumentClick)
-    document.getElementById("input").addEventListener("click", handleOuterInputClick)
-    document.getElementById("input-text").addEventListener("focus", handleInnerInputFocus)
-    document.getElementById("input-text").addEventListener("blur", handleInnerInputBlur)
-    document.getElementById("input-text").addEventListener("keydown", handleInnerInputKeyDown)
-    document.getElementById("input-text").addEventListener("input", handleInnerInputInput)
-    document.getElementById("calculate-btn").addEventListener("click", handleCalculateBtnClick)
+    set_listeners([
+        {id: "input", events: [
+            {type: "click", handler: handleOuterInputClick},
+        ]},
+        {id: "input-text", events: [
+            {type: "focus", handler: handleInnerInputFocus},
+            {type: "blur", handler: handleInnerInputBlur},
+            {type: "keydown", handler: handleInnerInputKeyDown},
+            {type: "input", handler: handleInnerInputInput},
+        ]},
+        {id: "change-mode-btn", events: [
+            {type: "mousedown", handler: handleChangeModeBtnMouseDown},
+            {type: "click", handler: handleChangeModeBtnClick},
+        ]},
+        {id: "mode-list", events: [
+            {type: "keydown", handler: handleModeListKeyDown},
+        ]},
+        {id: "calculate-btn", events: [
+            {type: "click", handler: handleCalculateBtnClick},
+        ]},
+    ])
 })
-
-class Compound
-{
-    constructor(quantity = 1, elements = {})
-    {
-        this.elements = elements
-        this.quantity = quantity
-    }
-
-    push(element_short_name, element_quantity = 1)
-    {
-        if(!this.elements[element_short_name])
-            this.elements[element_short_name] = element_quantity
-        else
-            this.elements[element_short_name] += element_quantity
-    }
-}
 
 function handleDocumentClick(e)
 {
@@ -48,7 +64,7 @@ function handleDocumentClick(e)
 
 function handleOuterInputClick(e)
 {
-    e.target.children[0].focus()
+    e.target.firstChild.focus()
 }
 
 function handleInnerInputFocus(e)
@@ -63,11 +79,11 @@ function handleInnerInputBlur(e)
 
 function handleInnerInputKeyDown(e)
 {
-    cur_cursor_index = get_cursor_index(e.target)
-    cur_pressed_key = e.key
-    if(cur_pressed_key == "Enter")
+    states.cur_cursor_index = get_cursor_index(e.target)
+    states.cur_pressed_key = e.key
+    if(states.cur_pressed_key == "Enter")
     {
-        document.getElementById("calculate-btn").click()
+        get_id("calculate-btn").click()
         e.target.blur()
     }
 }
@@ -78,11 +94,32 @@ function handleInnerInputInput(e)
     refresh_cursor(e.target)
 }
 
+function handleChangeModeBtnMouseDown()
+{
+    states.mode_list_state = get_id("mode-list") === document.activeElement
+}
+
+function handleChangeModeBtnClick(e)
+{
+    const mode_list = get_id("mode-list")
+    states.mode_list_state = !states.mode_list_state
+    if(states.mode_list_state)
+        mode_list.focus()
+    else
+        mode_list.blur()
+}
+
+function handleModeListKeyDown(e)
+{
+    if(e.key == "Escape")
+        e.target.blur()
+}
+
 function handleCalculateBtnClick(e)
 {
     try
     {
-        const compound = parse_input_value(document.getElementById("input-text").textContent)
+        const compound = parse_input_value(get_id("input-text").textContent)
         show_element_data(compound)
     }
     catch(error)
@@ -145,7 +182,10 @@ function parse_input_value(value)
 
 function show_element_data(compound)
 {
-    
+    //strukturalny
+    //grupowy
+    //empiryczny
+    //sumaryczny
 }
 
 function get_selection_index(input, range_container, range_offset)
@@ -176,13 +216,13 @@ function get_cursor_index(input)
 function refresh_cursor(input)
 {
     new_input_value = input.textContent
-    diff = new_input_value.length - cur_input_value.length
-    new_cursor_index = cur_cursor_index + diff
-    if(cur_pressed_key == "Delete")
-        new_cursor_index = cur_cursor_index
+    diff = new_input_value.length - states.cur_input_value.length
+    new_cursor_index = states.cur_cursor_index + diff
+    if(states.cur_pressed_key == "Delete")
+        new_cursor_index = states.cur_cursor_index
     if(new_cursor_index > 0)
         set_cursor_index(new_cursor_index, input)
-    cur_input_value = new_input_value
+    states.cur_input_value = new_input_value
 }
 
 function set_cursor_index(index, node)
@@ -260,7 +300,7 @@ function refresh_value(input)
 {
     input.innerHTML = format_input_value(input.textContent)
     
-    if(cur_input_value == input.textContent)
+    if(states.cur_input_value == input.textContent)
         run_animation(input.parentNode, "input-typing-error")
     else
         run_animation(input.parentNode, "input-typing")
@@ -280,9 +320,9 @@ function run_animation(node, animation_name)
 
 function boom()
 {
-    run_animation(document.getElementById("input"), "boom-input")
-    run_animation(document.getElementById("calculate-btn"), "boom-btn")
-    run_animation(document.getElementById("output"), "fade-in-output") 
+    run_animation(get_id("input"), "boom-input")
+    run_animation(get_id("calculate-btn"), "boom-btn")
+    run_animation(get_id("output"), "fade-in-output") 
     const music = new Audio("src/sounds/boom.mp3")
     music.play()
 }
