@@ -2,7 +2,7 @@
 
 const elements_data =
 {
-	"H": {atomic_number: 1, full_name: "wodór", inflected_name: "Wodoru", atomic_weight: 1.008},
+	"H": {atomic_number: 1, full_name: "wodór", inflected_name: "wodoru", atomic_weight: 1.008},
 	"He": {atomic_number: 2, full_name: "hel", inflected_name: "helu", atomic_weight: 4.0026},
 	"Li": {atomic_number: 3, full_name: "lit", inflected_name: "litu", atomic_weight: 6.94},
 	"Be": {atomic_number: 4, full_name: "beryl", inflected_name: "berlu", atomic_weight: 9.0122},
