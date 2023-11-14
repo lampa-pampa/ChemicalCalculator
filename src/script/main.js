@@ -10,7 +10,6 @@ let states =
     cur_input_value: "",
     cur_pressed_key: "",
     cur_cursor_index: 0,
-    mode_list_state: false,
 }
 
 function get_id(id)
