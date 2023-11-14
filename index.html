@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator chemiczny</title>
     <link rel="icon" href="src/img/icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/main.css">
     <script src="src/script/main.js"></script>
-    <script src="src/script/formatted_input.js"></script>
-    <script src="src/script/event_listeners.js"></script>
     <script src="src/script/elements_data.js"></script>
+    <script src="src/script/input.js"></script>
+    <script src="src/script/event_listeners.js"></script>
+    <script src="src/script/animations.js"></script>
     <script src="src/script/compound.js"></script>
 </head>
 <body>
@@ -23,31 +24,31 @@
     <main>
         <div class="input" id="input"><pre contenteditable id="input-text" class="input-text" spellcheck="false"></pre></div>
         <section class="buttons-box">
-            <div class="list-box">
+            <div class="list-box connect-to-left">
                 <button class="btn list-opener" id="change-mode-btn" title="Zmień tryb">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M19,10H5V8H19V10M19,16H5V14H19V16Z" />
                     </svg>
                 </button>
                 <div class="list" id="mode-list" tabindex="0">
-                    <button class="btn list-btn" title="tryb_1">
+                    <button class="btn connect-to-top" title="tryb_1">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M19,10H5V8H19V10M19,16H5V14H19V16Z" />
                         </svg>
                     </button>
-                    <button class="btn list-btn" title="tryb_1">
+                    <button class="btn connect-to-top" title="tryb_1">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M19,10H5V8H19V10M19,16H5V14H19V16Z" />
                         </svg>
                     </button>
-                    <button class="btn list-btn" title="tryb_1">
+                    <button class="btn connect-to-top" title="tryb_1">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M19,10H5V8H19V10M19,16H5V14H19V16Z" />
                         </svg>
                     </button>
                 </div>
             </div>
-            <button class="btn" id="calculate-btn" title="Oblicz">
+            <button class="btn connect-to-left" id="calculate-btn" title="Oblicz">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M13 7.1L14.1 6L15.5 7.4L16.9 6L18 7.1L16.6 8.5L18 9.9L16.9 11L15.5 9.6L14.1 11L13 9.9L14.4 8.5L13 7.1M6.2 7.7H11.2V9.2H6.2V7.7M11.5 16H9.5V18H8V16H6V14.5H8V12.5H9.5V14.5H11.5V16M18 17.2H13V15.7H18V17.2M18 14.8H13V13.3H18V14.8Z" />
                 </svg>
