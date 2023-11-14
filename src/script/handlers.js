@@ -25,7 +25,7 @@ function handleInnerInputKeyDown(e)
 {
     states.cur_cursor_index = get_cursor_index(e.target)
     states.cur_pressed_key = e.key
-    if(states.cur_pressed_key == "Enter")
+    if(states.cur_pressed_key === "Enter")
     {
         get_id("calculate-btn").click()
         e.target.blur()
@@ -45,7 +45,7 @@ function handleChangeModeBtnClick(e)
 
 function handleModeListKeyDown(e)
 {
-    if(e.key == "Escape")
+    if(e.key === "Escape")
         e.target.blur()
 }
 
@@ -56,12 +56,25 @@ function handleCalculateBtnClick(e)
     {
         if(value)
         {
-            const compound = parse_input_value(get_id("input-text").textContent)
-            boom()
+            const mode = get_id("change-mode-btn").getAttribute("mode")
+            if(mode)
+            {
+                const compound = parse_input_value(get_id("input-text").textContent)
+                data.modes[mode].calculator_function(compound)
+                boom()
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            
         }
     }
     else
     {
-        throw new Error("pal gume")
+        
     }
 }
