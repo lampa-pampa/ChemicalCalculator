@@ -1,4 +1,6 @@
 .input {
+    background-color: var(--main-bg-color);
+    z-index: 1;
     padding-inline: var(--main-padding);
     padding-top: 0.23em;
     border: var(--main-border-width) solid var(--main-theme-color);
