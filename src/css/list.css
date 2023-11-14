@@ -4,10 +4,14 @@
 
 .connect-to-left {
     margin-left: var(--main-gap);
+    display: flex;
+    align-items: center;
 }
 
 .connect-to-top {
     margin-top: var(--main-gap);
+    display: flex;
+    justify-content: center;
 }
 
 .connect-to-left::before, .connect-to-top::before {
@@ -17,24 +21,31 @@
     transition: background-color var(--main-out-duration);
 }
 
-.connect-to-top::before {
-    bottom: 100%;
-    width: var(--main-border-width);
-    height: var(--main-gap);
-}
-
-.btn.connect-to-top::before {
-    bottom: calc(100% + var(--main-border-width))
-}
-
 .connect-to-left::before {
     right: 100%;
     width: var(--main-gap);
     height: var(--main-border-width);
 }
 
-.btn.connect-to-left::before {
+.connect-to-top::before {
+    bottom: 100%;
+    width: var(--main-border-width);
+    height: var(--main-gap);
+}
+
+.btn.connect-to-left::before, .list-element-title.connect-to-left::before {
     right: calc(100% + var(--main-border-width))
+}
+
+.btn.connect-to-top::before, .list-element-title.connect-to-top::before {
+    bottom: calc(100% + var(--main-border-width))
+}
+
+.connect-to-left:hover::before,
+.connect-to-left:hover + .connect-to-left::before,
+.input.active + .buttons-box .connect-to-left:nth-child(1)::before {
+    background-color: var(--main-font-color);
+    transition-duration: var(--main-in-duration);
 }
 
 .connect-to-top:hover::before,
@@ -46,8 +57,6 @@
 
 .list-box {
     outline: none;
-    display: grid;
-    align-items: center;
 }
 
 .list {
@@ -58,7 +67,34 @@
     transition: opacity var(--list-out-duration);
 }
 
-.list:focus:not(:focus-visible) {
+.list-element-title {
+    z-index: 1;
+    position: absolute;
+    left: calc(100% + var(--main-border-width));
+    margin-left: calc(var(--main-gap) - var(--main-border-width));
+    pointer-events: none;
+    height: 100%;
+    font-size: calc(var(--main-font-size) * 0.8);
+    padding: var(--main-padding);
+    white-space: nowrap;
+    border: var(--main-border-width) solid var(--secondary-theme-color);
+    border-radius: var(--main-border-radius);
+    color: var(--secondary-theme-color);
+    box-shadow: 0 0 var(--main-box-shadow) var(--main-theme-color);
+    opacity: 0;
+    transition: opacity var(--main-out-duration);
+}
+
+.list-element-title::before {
+    background-color: var(--main-font-color);
+}
+
+.list-element:hover .list-element-title {
+    opacity: 1;
+    transition-duration: var(--main-in-duration);
+}
+
+.list-box:focus .list {
     opacity: 1;
     pointer-events: all;
     transition-duration: var(--list-in-duration);
