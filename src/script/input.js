@@ -26,7 +26,7 @@ function parse_input_value(value)
         for(let j = data.max_short_name_length; j > 0; --j)
         {
             Object.keys(elements_data).every((key) => {
-                condition = key == value.substr(read_index, j)
+                condition = key === value.substr(read_index, j)
                 if(condition)
                     found = value.substr(read_index, j)
                 return !condition
@@ -77,7 +77,7 @@ function validate_input_value(value)
         for(let j = data.max_short_name_length; j > 0; --j)
         {
             Object.keys(elements_data).every((key) => {
-                condition = key == value.substr(read_index, j)
+                condition = key === value.substr(read_index, j)
                 if(condition)
                     found = value.substr(read_index, j)
                 return !condition
@@ -135,7 +135,7 @@ function refresh_cursor(input)
     new_input_value = input.textContent
     diff = new_input_value.length - states.cur_input_value.length
     new_cursor_index = states.cur_cursor_index + diff
-    if(states.cur_pressed_key == "Delete")
+    if(states.cur_pressed_key === "Delete")
         new_cursor_index = states.cur_cursor_index
     if(new_cursor_index > 0)
         set_cursor_index(new_cursor_index, input)
