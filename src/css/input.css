@@ -1,0 +1,36 @@
+.input {
+    padding-inline: var(--main-padding);
+    padding-top: 0.23em;
+    border: var(--main-border-width) solid var(--main-theme-color);
+    border-radius: var(--main-border-radius);
+    cursor: text;
+    animation-duration: var(--main-out-duration);
+    transition-property: border, box-shadow;
+    transition-duration: var(--main-out-duration);
+    position: relative;
+    grid-column: 2 / 3;
+    width: 100%;
+    height: 100%;
+}
+
+.input.active {
+    border-color: var(--secondary-theme-color);
+    box-shadow: 0 0 var(--main-box-shadow) var(--main-theme-color);
+    transition-duration: var(--main-in-duration);
+}
+
+.input.error {
+    border-color: var(--error-color);
+    box-shadow: 0 0 var(--main-box-shadow) var(--error-color);
+}
+
+.input-text {
+    font-size: inherit;
+    outline: none;
+    overflow-x: hidden;
+    pointer-events: none;
+}
+
+.input-text .digit {
+    color: var(--input-digit-color);
+}

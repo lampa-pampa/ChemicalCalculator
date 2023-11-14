@@ -1,0 +1,28 @@
+:root {
+    --content-width: 500px;
+    --header-height: 60px;
+    --footer-height: 20px;
+
+    --main-gap: 0.5em;
+    --main-border-radius: 5px;
+    --main-border-width: 1px;
+    --main-padding: 10px;
+    --main-box-shadow: 10px;
+
+    --main-font-size: 30px;
+    --main-font-weight: 600;
+    --title-text-shadow: 5px;
+
+    --main-in-duration: 200ms;
+    --main-out-duration: 800ms;
+    --list-in-duration: 200ms;
+    --list-out-duration: 400ms;
+    --output-fade-in-duration: 1200ms;
+
+    --main-theme-color: #4b1bd1;
+    --main-bg-color: #000000;
+    --main-font-color: #ffffff;
+    --secondary-theme-color: #ffd000;
+    --input-digit-color: #7df0ff;
+    --error-color: #ff0000;
+}

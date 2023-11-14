@@ -1,0 +1,43 @@
+.btn {
+    font-size: inherit;
+    outline: none;
+    padding: var(--main-padding);
+    display: grid;
+    place-items: center;
+    border: var(--main-border-width) solid var(--main-theme-color);
+    border-radius: var(--main-border-radius);
+    cursor: pointer;
+    color: inherit;
+    background-color: var(--main-bg-color);
+    animation-duration: var(--main-out-duration);
+    transition: 
+        border var(--main-out-duration),
+        box-shadow var(--main-out-duration),
+        background-color var(--main-out-duration);
+}
+
+.btn svg {
+    pointer-events: none;
+}
+
+.btn:hover, .btn:focus-visible .btn.active {
+    border-color: var(--secondary-theme-color);
+    box-shadow: 0 0 var(--main-box-shadow) var(--main-theme-color);
+    transition: 
+        border var(--main-in-duration),
+        box-shadow var(--main-in-duration),
+        background-color var(--main-out-duration);
+}
+
+.btn:active {
+    background-color: var(--main-theme-color);
+    transition: 
+        border var(--main-in-duration),
+        box-shadow var(--main-in-duration),
+        background-color 0ms;
+}
+
+.btn:hover svg, .btn:focus-visible svg, .btn.active svg {
+    fill: var(--secondary-theme-color);
+    transition-duration: var(--main-in-duration);
+}

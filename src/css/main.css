@@ -1,0 +1,86 @@
+@import url("data.css");
+@import url("animations.css");
+@import url("button.css");
+@import url("input.css");
+@import url("list.css");
+
+body {
+    display: grid;
+    grid-template-rows: var(--header-height) 1fr var(--footer-height);
+    margin: 0;
+    background-color: var(--main-bg-color);
+    color: var(--main-font-color);
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--main-font-size);
+    font-weight: var(--main-font-weight);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr var(--content-width) 1fr;
+    align-content: start;
+    justify-items: center;
+    row-gap: calc(2 * var(--main-gap));
+    padding-top: var(--main-gap);
+}
+
+pre {
+    font-family: inherit;
+    margin: 0;
+}
+
+svg {
+    fill: var(--main-font-color);
+    transition: fill var(--main-out-duration);
+    width: 1em;
+}
+
+header {
+    display: grid;
+    justify-items: center;
+}
+
+.title-box {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+.logo {
+    width: 1em;
+}
+
+.title {
+    text-shadow: 0 0 var(--title-text-shadow) var(--main-theme-color);
+}
+
+.buttons-box {
+    justify-self: start;
+    display: flex;
+}
+
+.output {
+    grid-column: 2 / 3;
+    animation-duration: var(--output-fade-in-duration);
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+}
+
+.output .property-name {
+    justify-self: start;
+}
+
+.output .property-value {
+    justify-self: end;
+}
+
+footer {
+    font-size: x-small;
+    justify-self: center;
+}

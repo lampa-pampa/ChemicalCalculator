@@ -1,0 +1,19 @@
+@keyframes boom-input {
+    0% {
+        background-color: var(--main-font-color);
+        transform: scale(1.03, 1.1);
+    }
+}
+
+@keyframes fade-in-output {
+    0% {
+        opacity: 0;
+    }
+}
+
+@keyframes input-typing-error {
+    0% {
+        border-color: var(--error-color);
+        box-shadow: 0 0 var(--main-box-shadow) var(--error-color);
+    }
+}
