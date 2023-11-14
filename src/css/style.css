@@ -170,6 +170,11 @@ header {
     transition-duration: var(--main-in-duration);
 }
 
+.input.error {
+    border-color: var(--error-color);
+    box-shadow: 0 0 var(--main-box-shadow) var(--error-color);
+}
+
 .input-text {
     font-size: inherit;
     outline: none;
@@ -224,12 +229,6 @@ footer {
 @keyframes fade-in-output {
     0% {
         opacity: 0;
-    }
-}
-
-@keyframes input-typing {
-    0% {
-        border-color: var(--main-theme-color);
     }
 }
 
