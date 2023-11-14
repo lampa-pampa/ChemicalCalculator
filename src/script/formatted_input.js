@@ -1,3 +1,10 @@
+let states = 
+{
+    cur_input_value: "",
+    cur_pressed_key: "",
+    cur_cursor_index: 0,
+}
+
 function parse_input_value(value)
 {
     const compound = new Compound();
