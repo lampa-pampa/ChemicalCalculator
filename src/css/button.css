@@ -1,4 +1,5 @@
 .btn {
+    z-index: 1;
     font-size: inherit;
     outline: none;
     padding: var(--main-padding);
@@ -20,7 +21,7 @@
     pointer-events: none;
 }
 
-.btn:hover, .btn:focus-visible .btn.active {
+.btn:hover, .btn:focus-visible, .btn.active, .list-box:focus .list-opener {
     border-color: var(--secondary-theme-color);
     box-shadow: 0 0 var(--main-box-shadow) var(--main-theme-color);
     transition: 
@@ -37,7 +38,7 @@
         background-color 0ms;
 }
 
-.btn:hover svg, .btn:focus-visible svg, .btn.active svg {
+.btn:hover svg, .btn:focus-visible svg, .btn.active svg, .list-box:focus .list-opener svg {
     fill: var(--secondary-theme-color);
     transition-duration: var(--main-in-duration);
 }
