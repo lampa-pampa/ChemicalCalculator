@@ -80,9 +80,11 @@ function handleChangeModeBtnMouseDown(e)
 function handleChangeModeBtnClick(e)
 {
     const mode_list = get_id("mode-list")
+    
     state = JSON.parse(e.target.getAttribute("state"))
     state = !state
     e.target.setAttribute("state", state)
+    
     if(state)
         mode_list.focus()
     else
@@ -100,7 +102,11 @@ function handleCalculateBtnClick(e)
     const value = get_id("input-text").textContent
     if(validate_input_value(value))
     {
-        const compound = parse_input_value(get_id("input-text").textContent)
+        if(value)
+        {
+            const compound = parse_input_value(get_id("input-text").textContent)
+            boom()
+        }
     }
     else
     {
