@@ -100,6 +100,10 @@ header {
     transition-duration: var(--main-in-duration);
 }
 
+.btn svg {
+    pointer-events: none;
+}
+
 .btn:hover svg, .btn:focus-visible svg, .btn.active svg {
     fill: var(--secondary-theme-color);
     transition-duration: var(--main-in-duration);

@@ -72,16 +72,18 @@ function handleInnerInputInput(e)
     refresh_cursor(e.target)
 }
 
-function handleChangeModeBtnMouseDown()
+function handleChangeModeBtnMouseDown(e)
 {
-    states.mode_list_state = get_id("mode-list") === document.activeElement
+    e.target.setAttribute("state", JSON.stringify(get_id("mode-list") === document.activeElement))
 }
 
 function handleChangeModeBtnClick(e)
 {
     const mode_list = get_id("mode-list")
-    states.mode_list_state = !states.mode_list_state
-    if(states.mode_list_state)
+    state = JSON.parse(e.target.getAttribute("state"))
+    state = !state
+    e.target.setAttribute("state", state)
+    if(state)
         mode_list.focus()
     else
         mode_list.blur()
