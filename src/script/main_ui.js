@@ -1,10 +1,9 @@
-class UI
+class MainUi
 {
     constructor()
     {
         this.music = new Audio(data.sounds.music.dir)
         this.music.loop = true
-        this.output = get_id("output")
     }
 
     run_animation(node, animation_name)
@@ -59,12 +58,22 @@ class UI
         }, data.refresh_value_frame_delay)
     }
 
+    output_write(child_node)
+    {
+        get_id("output").innerHTML = ""
+        this.output_append(child_node)
+    }
+
+    output_append(child_node)
+    {
+        get_id("output").appendChild(child_node)
+    }
+
     output_alert(message)
     {
         const alert = document.createElement("span")
         alert.classList.add("alert")
         alert.textContent = message
-        this.output.innerHTML = ""
-        this.output.appendChild(alert)
+        this.output_write(alert)
     }
 }
