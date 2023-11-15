@@ -11,6 +11,12 @@
     }
 }
 
+@keyframes input-typing {
+    0% {
+        background-color: var(--input-typing-bg-color);
+    }
+}
+
 @keyframes input-typing-error {
     0% {
         border-color: var(--error-color);
