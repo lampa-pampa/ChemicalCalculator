@@ -11,7 +11,8 @@
 
     --main-font-size: 30px;
     --main-font-weight: 600;
-    --title-text-shadow: 5px;
+    --main-text-shadow: 5px;
+    --output-font-size: 20px;
 
     --main-in-duration: 200ms;
     --main-out-duration: 800ms;
