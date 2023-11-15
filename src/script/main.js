@@ -18,15 +18,14 @@ function try_to_play_sound(sound_name)
         ui.play_sound(sound_name)
 }
 
-let ui = null
 
+let ui = new UI()
 let settings = {
     music: false,
     fx: false,
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    ui = new UI()
     create_mode_list()
     set_mode(data.default_mode)
     document.addEventListener("click", handleDocumentClick)
