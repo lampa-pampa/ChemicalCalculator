@@ -1,6 +1,29 @@
+let main_ui = null
+let input = null
+let mode_list = null
+
+let settings = {
+    music: false,
+    fx: false,
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    init()
+})
+
 function get_id(id)
 {
     return document.getElementById(id)
+}
+
+function storage_get(property_name)
+{
+    return JSON.parse(localStorage.getItem(property_name))
+}
+
+function storage_set(property_name, value)
+{
+    localStorage.setItem(property_name, JSON.stringify(value))
 }
 
 function set_listeners(listeners_data)
@@ -15,20 +38,17 @@ function set_listeners(listeners_data)
 function try_to_play_sound(sound_name)
 {
     if(settings.fx)
-        ui.play_sound(sound_name)
+        main_ui.play_sound(sound_name)
 }
 
+function init()
+{
+    main_ui = new MainUi()
+    input = new Input(new InputUI())
+    mode_list = new ModeList(new ModeListUI())
 
-let ui = new UI()
-let settings = {
-    music: false,
-    fx: false,
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    create_mode_list()
-    set_mode(data.default_mode)
     document.addEventListener("click", handleDocumentClick)
+    
     set_listeners([
         {id: "input", events: [
             {type: "click", handler: handleOuterInputClick},
@@ -49,4 +69,4 @@ document.addEventListener("DOMContentLoaded", () => {
             {type: "click", handler: handleCalculateBtnClick},
         ]},
     ])
-})
+}
