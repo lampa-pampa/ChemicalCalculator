@@ -23,3 +23,9 @@
         box-shadow: 0 0 var(--main-box-shadow) var(--error-color);
     }
 }
+
+@keyframes alert-boom {
+    0% {
+        color: var(--error-color);
+    }
+}
