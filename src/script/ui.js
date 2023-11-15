@@ -1,21 +1,45 @@
 class UI
 {
-    static run_animation(node, animation_name)
+    constructor()
+    {
+        this.music = new Audio(data.sounds.music.dir)
+        this.music.loop = true
+        this.output = get_id("output")
+    }
+
+    run_animation(node, animation_name)
     {
         node.style.animationName = ""
         node.offsetWidth
         node.style.animationName = animation_name
     }
 
-    static boom()
+    play_music()
     {
-        UI.run_animation(get_id("input"), "boom-input")
-        UI.run_animation(get_id("output"), "fade-in-output") 
-        const music = new Audio("src/sounds/boom.mp3")
-        music.play()
+        music = true
+        this.music.volume = data.sounds.music.start_volume
+        this.music.play()
+        const self = this
+        let interval = setInterval(() => {
+            if(self.music.volume < 1 - data.sounds.music.volume_offset)
+            {
+                self.music.volume += data.sounds.music.volume_offset
+            }
+            else
+            {
+                self.music.volume = 1
+                clearInterval(interval)
+            }
+        }, data.sounds.music.volume_offset_dalay)
     }
 
-    static smooth_value_refresh(node, value)
+    play_sound(sound_name)
+    {
+        const sound = new Audio(data.sounds.fx.dir + data.sounds.fx.names[sound_name])
+        sound.play()
+    }
+
+    smooth_value_refresh(node, value)
     {
         node.textContent = 0
         let diff = 1
@@ -33,5 +57,14 @@ class UI
             else
                 clearInterval(interval)   
         }, data.refresh_value_frame_delay)
+    }
+
+    output_alert(message)
+    {
+        const alert = document.createElement("span")
+        alert.classList.add("alert")
+        alert.textContent = message
+        this.output.innerHTML = ""
+        this.output.appendChild(alert)
     }
 }
