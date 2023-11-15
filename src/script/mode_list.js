@@ -1,0 +1,26 @@
+class ModeList
+{
+    constructor(ui)
+    {
+        this.ui = ui
+        this.ui.create_mode_list()
+        const storage_mode = storage_get("mode")
+        if(storage_mode && Object.keys(data.modes).includes(storage_mode))
+            this.set_mode(storage_mode)
+        else
+            this.set_mode(data.default_mode)
+    }
+
+    set_mode(mode_name)
+    {
+        storage_set("mode", mode_name)
+        const change_mode_btn = get_id("change-mode-btn")
+        change_mode_btn.setAttribute("mode", mode_name)
+        change_mode_btn.children[0].children[0].setAttribute("d", data.modes[mode_name].svg_path)
+    }
+    
+    get_mode()
+    {
+        return get_id("change-mode-btn").getAttribute("mode")
+    }
+}
