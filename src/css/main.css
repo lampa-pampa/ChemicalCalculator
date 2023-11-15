@@ -9,6 +9,7 @@ body {
     grid-template-rows: var(--header-height) 1fr var(--footer-height);
     margin: 0;
     background-color: var(--main-bg-color);
+    animation-duration: var(--main-out-duration);
     color: var(--main-font-color);
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
