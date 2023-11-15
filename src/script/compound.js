@@ -1,16 +1,19 @@
 class Compound
 {
-    constructor(quantity = 1, elements = {})
+    static create(quantity = 1, elements = [])
     {
-        this.elements = elements
-        this.quantity = quantity
+        const compound = new Compound()
+        compound.elements = elements
+        compound.quantity = quantity
+        
+        return compound
     }
 
     push(element_short_name, element_quantity = 1)
     {
-        if(!this.elements[element_short_name])
-            this.elements[element_short_name] = element_quantity
-        else
-            this.elements[element_short_name] += element_quantity
+        this.elements.push({
+            short_name: element_short_name,
+            element_quantity: element_quantity,
+        })
     }
 }
