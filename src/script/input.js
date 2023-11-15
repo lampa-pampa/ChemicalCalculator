@@ -196,7 +196,9 @@ function refresh_input_value(input)
     input.innerHTML = format_input_value(input.textContent)
     
     if(states.cur_input_value == input.textContent)
-        run_animation(input.parentNode, "input-typing-error")
+        ui.run_animation(input.parentNode, "input-typing-error")
+    else
+        ui.run_animation(document.body, "input-typing")
 
     if(!validate_input_value(input.textContent))
         input.parentNode.classList.add("error")
