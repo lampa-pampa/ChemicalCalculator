@@ -1,0 +1,5 @@
+.alert {
+    font-size: var(--output-font-size);
+    text-shadow: 0 0 var(--main-text-shadow) var(--error-color);
+    animation: alert-boom var(--main-out-duration);
+}
