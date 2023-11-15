@@ -1,8 +1,7 @@
 function handleDocumentClick(e)
 {
-    const music = new Audio("src/sounds/music.mp3")
-    music.loop = true
-    // music.play()
+    if(settings.music)
+        ui.play_music()
     document.removeEventListener("click", handleDocumentClick)
 }
 
@@ -61,20 +60,18 @@ function handleCalculateBtnClick(e)
             {
                 const compound = parse_input_value(get_id("input-text").textContent)
                 data.modes[mode].calculator_function(compound)
-                boom()
-            }
-            else
-            {
-
+                ui.run_animation(get_id("input"), "boom-input")
+                ui.run_animation(get_id("output"), "fade-in-output") 
+                try_to_play_sound("boom")
             }
         }
         else
         {
-            
+            ui.output_alert("Podaj wzór sumaryczny związku")
         }
     }
     else
     {
-        
+        ui.output_alert("Niepoprawna wartość")
     }
 }
