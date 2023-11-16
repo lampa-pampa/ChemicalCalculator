@@ -28,7 +28,7 @@ class OutputUI
     append_line(name, value, unit, second_value, second_unit, second = false)
     {
         const line = this.create_named_div("line")
-        const line_value = this.create_named_div("line-value")
+        const values = this.create_named_div("values")
         
         const property_name = this.create_named_div("property-name")
         property_name.textContent = name
@@ -42,17 +42,17 @@ class OutputUI
         let second_property_unit = this.create_named_div("second-property-unit")
 
         line.appendChild(property_name)
-        line_value.appendChild(property_value)
-        line_value.appendChild(property_unit)
+        values.appendChild(property_value)
+        values.appendChild(property_unit)
         
         if(second)
         {
             second_property_unit.textContent = second_unit
-            line_value.appendChild(second_property_value)
-            line_value.appendChild(second_property_unit)
+            values.appendChild(second_property_value)
+            values.appendChild(second_property_unit)
         }
 
-        line.appendChild(line_value)
+        line.appendChild(values)
         this.append(line)
         this.smooth_value_refresh(property_value, value)
 

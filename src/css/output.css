@@ -20,6 +20,10 @@
     justify-content: space-between;
 }
 
+.line .values {
+    display: flex;
+}
+
 .line .second-property-value {
     margin-left: var(--main-gap);
 }
