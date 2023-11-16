@@ -11,10 +11,10 @@ class ModeList
             this.set_mode(data.default_mode)
         set_listeners([
             {id: "change-mode-btn", events: [
-                {type: "click", handler: this.handleChangeModeBtnClick},
+                {type: "click", handler: handleChangeModeBtnClick},
             ]},
             {id: "mode-list", events: [
-                {type: "keydown", handler: this.handleModeListKeyDown},
+                {type: "keydown", handler: handleModeListKeyDown},
             ]},
         ])
     }
@@ -31,15 +31,15 @@ class ModeList
     {
         return get_id("change-mode-btn").getAttribute("mode")
     }
+}
 
-    handleChangeModeBtnClick(e)
-    {
-        get_id("mode-list").focus()
-    }
+function handleChangeModeBtnClick(e)
+{
+    get_id("mode-list").focus()
+}
 
-    handleModeListKeyDown(e)
-    {
-        if(e.key === "Escape")
-            e.target.blur()
-    }
+function handleModeListKeyDown(e)
+{
+    if(e.key === "Escape")
+        e.target.blur()
 }

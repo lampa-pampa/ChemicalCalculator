@@ -11,16 +11,16 @@ class Input
         
         set_listeners([
             {id: "input", events: [
-                {type: "click", handler: this.handleOuterInputClick},
+                {type: "click", handler: handleOuterInputClick},
             ]},
             {id: "input-text", events: [
-                {type: "focus", handler: this.handleInnerInputFocus},
-                {type: "blur", handler: this.handleInnerInputBlur},
-                {type: "keydown", handler: this.handleInnerInputKeyDown},
-                {type: "input", handler: this.handleInnerInputInput},
+                {type: "focus", handler: handleInnerInputFocus},
+                {type: "blur", handler: handleInnerInputBlur},
+                {type: "keydown", handler: handleInnerInputKeyDown},
+                {type: "input", handler: handleInnerInputInput},
             ]},
             {id: "calculate-btn", events: [
-                {type: "click", handler: this.handleCalculateBtnClick},
+                {type: "click", handler: handleCalculateBtnClick},
             ]},
         ])
     }
@@ -233,40 +233,41 @@ class Input
     {
         return `<${tag} class="${cls}">${char}</${tag}>`
     }
+}
 
-    handleOuterInputClick(e)
+function handleOuterInputClick(e)
+{
+    e.target.children[0].focus()
+}
+
+function handleInnerInputFocus(e)
+{
+    e.target.parentNode.classList.add("active")
+}
+
+function handleInnerInputBlur(e)
+{
+    e.target.parentNode.classList.remove("active")
+}
+
+function handleInnerInputKeyDown(e)
+{
+    input.state.cursor_index = input.get_cursor_index(e.target)
+    input.state.pressed_key = e.key
+    if(input.state.pressed_key === "Enter")
     {
-        e.target.children[0].focus()
+        get_id("calculate-btn").click()
+        e.target.blur()
     }
+}
 
-    handleInnerInputFocus(e)
-    {
-        e.target.parentNode.classList.add("active")
-    }
+function handleInnerInputInput(e)
+{
+    input.refresh_input_value(e.target)
+    input.refresh_cursor(e.target)
+}
 
-    handleInnerInputBlur(e)
-    {
-        e.target.parentNode.classList.remove("active")
-    }
-
-    handleInnerInputKeyDown(e)
-    {
-        input.state.cursor_index = input.get_cursor_index(e.target)
-        input.state.pressed_key = e.key
-        if(input.state.pressed_key === "Enter")
-        {
-            get_id("calculate-btn").click()
-            e.target.blur()
-        }
-    }
-
-    handleInnerInputInput(e)
-    {
-        input.refresh_input_value(e.target)
-        input.refresh_cursor(e.target)
-    }
-
-    handleCalculateBtnClick(e)
+function handleCalculateBtnClick(e)
 {
     const value = get_id("input-text").textContent
     if(input.validate_input_value(value))
@@ -285,13 +286,11 @@ class Input
         }
         else
         {
-            main_ui.output_alert("Podaj wzór sumaryczny związku")
+            input.ui.alert("Podaj wzór sumaryczny związku")
         }
     }
     else
     {
-        main_ui.output_alert("Niepoprawna wartość")
+        input.ui.alert("Niepoprawna wartość")
     }
-}
-
 }
