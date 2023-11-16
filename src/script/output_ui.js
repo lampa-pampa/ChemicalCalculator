@@ -6,15 +6,15 @@ class OutputUI
         const diff = value / data.refresh_value_frame_rate
         const interval = setInterval(() => {
             const cur_value = parseFloat(node.textContent)
-            if(cur_value < value)
-            { 
-                if(cur_value + diff <= value)
-                    node.textContent = (cur_value + diff).toFixed(data.value_precision)
-                else
-                    node.textContent = value.toFixed(data.value_precision)
+            if(cur_value + diff <= value)
+            {
+                node.textContent = (cur_value + diff).toFixed(data.value_precision)
             }
             else
+            {
+                node.textContent = value.toFixed(data.value_precision)
                 clearInterval(interval)   
+            }
         }, data.refresh_value_frame_delay)
     }
 
