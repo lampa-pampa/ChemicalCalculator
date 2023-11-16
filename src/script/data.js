@@ -3,11 +3,21 @@ const data =
     max_short_name_length: 2,
     refresh_value_frame_delay: 50,
     refresh_value_frame_rate: 20,
+    default_settings: {
+        music: true,
+        fx: true,
+    },
     sounds: {
         fx: {
             dir: "src/sounds/fx/",
             names: {
                 boom: "hit-brutal-puncher-cinematic-trailer-sound-effects-124760.mp3",
+                alert: "alarm-furious-laboratory-cinematic-trailer-sound-effects-123873.mp3",
+                output_load: "traimory-downer-charger-161152.mp3",
+                mode_list_click: "hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761.mp3",
+                input_focus: "traimory-braam-soft-rubikon-revealed-a-161151.mp3",
+                input_typing: "ping-contact-cinematic-trailer-sound-effects-124764.mp3",
+                input_typing_error: "bend-apocalypto-c-d-cinematic-trailer-sound-effects-123875.mp3",
             },
         },
         music: {
