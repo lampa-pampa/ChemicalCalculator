@@ -61,6 +61,17 @@ class OutputUI
             this.smooth_value_refresh(second_property_value, second_value)
         }
     }
+
+    alert(message)
+    {
+        const alert = document.createElement("span")
+        alert.classList.add("alert")
+        alert.textContent = message
+        this.clear()
+        this.append(alert)
+        try_to_play_sound("alert")
+    }
+
     clear()
     {
         get_id("output").innerHTML = ""
