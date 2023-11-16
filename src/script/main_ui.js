@@ -68,12 +68,4 @@ class MainUi
     {
         get_id("output").appendChild(child_node)
     }
-
-    output_alert(message)
-    {
-        const alert = document.createElement("span")
-        alert.classList.add("alert")
-        alert.textContent = message
-        this.output_write(alert)
-    }
 }
