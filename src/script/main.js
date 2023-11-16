@@ -1,11 +1,8 @@
 let main_ui = null
 let input = null
 let mode_list = null
-
-let settings = {
-    music: false,
-    fx: false,
-}
+let output_ui = null
+let settings = null
 
 document.addEventListener("DOMContentLoaded", () => {
     init()
@@ -13,9 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function init()
 {
+    settings = data.default_settings
     main_ui = new MainUi()
     input = new Input(new InputUI())
     mode_list = new ModeList(new ModeListUI())
+    output_ui = new OutputUI()
     document.addEventListener("click", handleDocumentClick)
 }
 
