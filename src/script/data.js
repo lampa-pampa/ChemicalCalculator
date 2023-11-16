@@ -1,8 +1,8 @@
 const data = 
 {
     max_short_name_length: 2,
-    refresh_value_frame_delay: 50,
-    refresh_value_frame_rate: 20,
+    refresh_value_frame_delay: 30,
+    refresh_value_frame_rate: 50,
     
     value_precision: 2,
     
@@ -25,6 +25,7 @@ const data =
                 boom: "hit-brutal-puncher-cinematic-trailer-sound-effects-124760.mp3",
                 alert: "alarm-furious-laboratory-cinematic-trailer-sound-effects-123873.mp3",
                 load_value: "traimory-downer-charger-161152.mp3",
+                show_value: "braam-classic-satellite-g-cinematic-trailer-sound-effects-123877.mp3",
                 mode_list_click: "hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761.mp3",
                 input_focus: "traimory-braam-soft-rubikon-revealed-a-161151.mp3",
                 input_typing: "ping-contact-cinematic-trailer-sound-effects-124764.mp3",

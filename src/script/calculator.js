@@ -10,7 +10,7 @@ class Calculator
 
         output_ui.clear()
         output_ui.append_line("Nazwa:", 0, elem_data.full_name)
-        try_to_play_sound("load_value")
+        try_to_play_sound("show_value")
 
         return true
     }
