@@ -13,7 +13,7 @@ class Compound
     {
         this.elements.push({
             short_name: element_short_name,
-            element_quantity: element_quantity,
+            quantity: element_quantity,
         })
     }
 }
