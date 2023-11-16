@@ -8,7 +8,7 @@ class Calculator
         let total_weight = 0
         for(const elem of compound.elements)
         {
-            const weight = elem.quantity * elements_data[elem.short_name].atomic_weight
+            const weight = elem.quantity * elements_data[elem.short_name].atomic_weight * compound.quantity
             total_weight += weight
 
             if(Object.keys(counter).includes(elem.short_name))
