@@ -51,6 +51,7 @@ header {
 .title-box {
     display: flex;
     align-items: center;
+    column-gap: calc(var(--main-gap) / 2);
 }
 
 .logo {
