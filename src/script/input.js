@@ -25,7 +25,7 @@ class Input
         ])
     }
     
-    parse_input_value(value)
+    parse_value(value)
     {
         const compound = Compound.create();
         let read_index = 0
@@ -72,7 +72,7 @@ class Input
         return compound
     }
 
-    validate_input_value(value)
+    validate_value(value)
     {
         if(!value)
             return true
@@ -185,7 +185,7 @@ class Input
         return /[a-zA-Z]/.test(value[i])
     }
 
-    format_input_value(value)
+    format_value(value)
     {
         let parsed_value = ""
         for(let i = 0; i < value.length; ++i)
@@ -214,16 +214,16 @@ class Input
         return parsed_value
     }
 
-    refresh_input_value(node)
+    refresh_value(node)
     {
-        node.innerHTML = this.format_input_value(node.textContent)
+        node.innerHTML = this.format_value(node.textContent)
         
         if(this.state.value == node.textContent)
             main_ui.run_animation(node.parentNode, "input-typing-error")
         else
             main_ui.run_animation(document.body, "input-typing")
 
-        if(!this.validate_input_value(node.textContent))
+        if(!this.validate_value(node.textContent))
             node.parentNode.classList.add("error")
         else
             node.parentNode.classList.remove("error")
@@ -263,21 +263,21 @@ function handleInnerInputKeyDown(e)
 
 function handleInnerInputInput(e)
 {
-    input.refresh_input_value(e.target)
+    input.refresh_value(e.target)
     input.refresh_cursor(e.target)
 }
 
 function handleCalculateBtnClick(e)
 {
     const value = get_id("input-text").textContent
-    if(input.validate_input_value(value))
+    if(input.validate_value(value))
     {
         if(value)
         {
             const mode = get_id("change-mode-btn").getAttribute("mode")
             if(mode)
             {
-                const compound = input.parse_input_value(get_id("input-text").textContent)
+                const compound = input.parse_value(get_id("input-text").textContent)
                 data.modes[mode].calculator_function(compound)
                 main_ui.run_animation(get_id("input"), "boom-input")
                 main_ui.run_animation(get_id("output"), "fade-in-output") 
