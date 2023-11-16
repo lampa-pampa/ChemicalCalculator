@@ -8,8 +8,10 @@ class Calculator
         const elem_short_name = compound.elements[0].short_name
         const elem_data = elements_data[elem_short_name]
 
+        output_ui.clear()
         output_ui.append_line("Nazwa:", 0, elem_data.full_name)
         try_to_play_sound("load_value")
+
         return true
     }
 
@@ -45,24 +47,28 @@ class Calculator
             }
         }
         try_to_play_sound("load_value")
+
         return true
     }
 
     static calculate_empirical_formula(compound)
     {
         console.log("empirical_formula")
+
         return true
     }
 
     static calculate_group_formula(compound)
     {
         console.log("group_formula")
+
         return true
     }
 
     static calculate_structural_formula(compound)
     {
         console.log("structural_formula")
+        
         return true
     }
 }
