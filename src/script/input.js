@@ -218,10 +218,19 @@ class Input
     {
         node.innerHTML = this.format_value(node.textContent)
         
+        if(input.state.pressed_key === "Enter")
+            return
+        
         if(this.state.value == node.textContent)
+        {
             main_ui.run_animation(node.parentNode, "input-typing-error")
+            try_to_play_sound("input_typing_error")
+        }
         else
+        {
             main_ui.run_animation(document.body, "input-typing")
+            try_to_play_sound("input_typing")
+        }
 
         if(!this.validate_value(node.textContent))
             node.parentNode.classList.add("error")
@@ -243,6 +252,7 @@ function handleOuterInputClick(e)
 function handleInnerInputFocus(e)
 {
     e.target.parentNode.classList.add("active")
+    try_to_play_sound("input_focus")
 }
 
 function handleInnerInputBlur(e)
@@ -254,15 +264,13 @@ function handleInnerInputKeyDown(e)
 {
     input.state.cursor_index = input.get_cursor_index(e.target)
     input.state.pressed_key = e.key
-    if(input.state.pressed_key === "Enter")
-    {
-        get_id("calculate-btn").click()
-        e.target.blur()
-    }
 }
 
 function handleInnerInputInput(e)
 {
+    if(input.state.pressed_key === "Enter")
+        get_id("calculate-btn").click()
+
     input.refresh_value(e.target)
     input.refresh_cursor(e.target)
 }
@@ -282,15 +290,18 @@ function handleCalculateBtnClick(e)
                 main_ui.run_animation(get_id("input"), "boom-input")
                 main_ui.run_animation(get_id("output"), "fade-in-output") 
                 try_to_play_sound("boom")
+                try_to_play_sound("output_load")
             }
         }
         else
         {
             input.ui.alert("Podaj wzór sumaryczny związku")
+            try_to_play_sound("alert")
         }
     }
     else
     {
         input.ui.alert("Niepoprawna wartość")
+        try_to_play_sound("alert")
     }
 }
