@@ -66,22 +66,6 @@ header {
     display: flex;
 }
 
-.output {
-    grid-column: 2 / 3;
-    animation-duration: var(--output-fade-in-duration);
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
-}
-
-.output .property-name {
-    justify-self: start;
-}
-
-.output .property-value {
-    justify-self: end;
-}
-
 footer {
     font-size: x-small;
     justify-self: center;
