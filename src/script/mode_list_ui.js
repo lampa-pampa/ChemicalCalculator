@@ -19,9 +19,7 @@ class ModeListUI
         const list_element_btn = document.createElement("button")
         list_element_btn.classList.add("btn")
         list_element_btn.id = id
-        list_element_btn.addEventListener("mousedown", (e) => {
-            mode_list.set_mode(e.target.id)
-        })
+        list_element_btn.addEventListener("mousedown", handleChangeModeListElementBtnClick)
         
         const svg_icon = document.createElementNS(data.svg.xmlns, "svg")
         svg_icon.setAttribute("viewBox", data.svg.view_box)

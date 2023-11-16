@@ -36,6 +36,13 @@ class ModeList
 function handleChangeModeBtnClick(e)
 {
     get_id("mode-list").focus()
+    try_to_play_sound("mode_list_click")
+}
+
+function handleChangeModeListElementBtnClick(e)
+{
+    mode_list.set_mode(e.target.id)
+    try_to_play_sound("mode_list_click")
 }
 
 function handleModeListKeyDown(e)
