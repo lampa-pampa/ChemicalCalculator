@@ -262,6 +262,8 @@ function handleInnerInputBlur(e)
 
 function handleInnerInputKeyDown(e)
 {
+    if(e.key === "Escape")
+        e.target.blur()
     input.state.cursor_index = input.get_cursor_index(e.target)
     input.state.pressed_key = e.key
 }
