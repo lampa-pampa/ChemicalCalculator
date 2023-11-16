@@ -1,5 +1,37 @@
+.output {
+    grid-column: 2 / 3;
+    animation-duration: var(--output-fade-in-duration);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: var(--main-gap);
+}
+
 .alert {
     font-size: var(--output-font-size);
     text-shadow: 0 0 var(--main-text-shadow) var(--error-color);
     animation: alert-boom var(--main-out-duration);
+    display: flex;
+    justify-content: center;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.line-value {
+    display: flex;
+}
+
+.line .second-property-value {
+    margin-left: var(--main-gap);
+}
+
+.line .second-property-value::before {
+    content: "(";
+}
+
+.line .second-property-unit::after {
+    content: ")"
 }
