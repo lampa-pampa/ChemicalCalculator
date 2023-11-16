@@ -288,21 +288,25 @@ function handleCalculateBtnClick(e)
             if(mode)
             {
                 const compound = input.parse_value(get_id("input-text").textContent)
-                data.modes[mode].calculator_function(compound)
-                main_ui.run_animation(get_id("input"), "boom-input")
-                main_ui.run_animation(get_id("output"), "fade-in-output") 
-                try_to_play_sound("boom")
+                if(data.modes[mode].calculator_function(compound))
+                {
+                    main_ui.run_animation(get_id("input"), "boom-input")
+                    main_ui.run_animation(get_id("output"), "fade-in-output") 
+                    try_to_play_sound("boom")
+                }
+                else
+                {
+                    output_ui.alert("Niepoprawna wartość")
+                }
             }
         }
         else
         {
-            input.ui.alert("Podaj wzór sumaryczny związku")
-            try_to_play_sound("alert")
+            output_ui.alert("Podaj wzór sumaryczny związku")
         }
     }
     else
     {
-        input.ui.alert("Niepoprawna wartość")
-        try_to_play_sound("alert")
+        output_ui.alert("Niepoprawna wartość")
     }
 }
