@@ -9,6 +9,14 @@ class ModeList
             this.set_mode(storage_mode)
         else
             this.set_mode(data.default_mode)
+        set_listeners([
+            {id: "change-mode-btn", events: [
+                {type: "click", handler: this.handleChangeModeBtnClick},
+            ]},
+            {id: "mode-list", events: [
+                {type: "keydown", handler: this.handleModeListKeyDown},
+            ]},
+        ])
     }
 
     set_mode(mode_name)
@@ -22,5 +30,16 @@ class ModeList
     get_mode()
     {
         return get_id("change-mode-btn").getAttribute("mode")
+    }
+
+    handleChangeModeBtnClick(e)
+    {
+        get_id("mode-list").focus()
+    }
+
+    handleModeListKeyDown(e)
+    {
+        if(e.key === "Escape")
+            e.target.blur()
     }
 }
