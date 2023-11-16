@@ -25,7 +25,7 @@ class OutputUI
         return div
     }
 
-    append_line(name, value, unit, second_value, second_unit, second = false)
+    load_line(name, value, unit, second_value, second_unit, second = false)
     {
         const line = this.create_named_div("line")
         const values = this.create_named_div("values")

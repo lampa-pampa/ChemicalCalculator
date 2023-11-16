@@ -9,7 +9,7 @@ class Calculator
         const elem_data = elements_data[elem_short_name]
 
         output_ui.clear()
-        output_ui.append_line("Nazwa:", 0, elem_data.full_name)
+        output_ui.load_line("Nazwa:", 0, elem_data.full_name)
         try_to_play_sound("show_value")
 
         return true
@@ -35,15 +35,15 @@ class Calculator
         if(keys.length == 1)
         {
             const elem_name = keys[0]
-            output_ui.append_line("=", counter[elem_name], "mol")
+            output_ui.load_line("=", counter[elem_name], "mol")
         }
         else
         {
-            output_ui.append_line("Całkowita masa:", total_weight, "mol")
+            output_ui.load_line("Całkowita masa:", total_weight, "mol")
             for(const elem_name in counter)
             {
                 const percents = (counter[elem_name] / total_weight * 100)
-                output_ui.append_line(`${elem_name}:`, counter[elem_name], "mol", percents, "%", true)
+                output_ui.load_line(`${elem_name}:`, counter[elem_name], "mol", percents, "%", true)
             }
         }
         try_to_play_sound("load_value")
