@@ -33,6 +33,7 @@ class Calculator
                 output_ui.append_line(`${elem_name}:`, counter[elem_name], "mol", percents, "%", true)
             }
         }
+        try_to_play_sound("load_value")
     }
 
     static calculate_empirical_formula(compound)

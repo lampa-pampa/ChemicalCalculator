@@ -17,7 +17,7 @@ const data =
             names: {
                 boom: "hit-brutal-puncher-cinematic-trailer-sound-effects-124760.mp3",
                 alert: "alarm-furious-laboratory-cinematic-trailer-sound-effects-123873.mp3",
-                output_load: "traimory-downer-charger-161152.mp3",
+                load_value: "traimory-downer-charger-161152.mp3",
                 mode_list_click: "hit-low-gravity-absorber-cinematic-trailer-sound-effects-124761.mp3",
                 input_focus: "traimory-braam-soft-rubikon-revealed-a-161151.mp3",
                 input_typing: "ping-contact-cinematic-trailer-sound-effects-124764.mp3",

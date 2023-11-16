@@ -292,7 +292,6 @@ function handleCalculateBtnClick(e)
                 main_ui.run_animation(get_id("input"), "boom-input")
                 main_ui.run_animation(get_id("output"), "fade-in-output") 
                 try_to_play_sound("boom")
-                try_to_play_sound("output_load")
             }
         }
         else
