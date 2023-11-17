@@ -62,6 +62,23 @@ class OutputUI
         }
     }
 
+    show_line(name, value)
+    {
+        const line = this.create_named_div("line")
+        const values = this.create_named_div("values")
+        
+        const property_name = this.create_named_div("property-name")
+        property_name.textContent = name
+        
+        const property_value = this.create_named_div("property-value")
+        property_value.textContent = value
+        
+        line.appendChild(property_name)
+        values.appendChild(property_value)
+        line.appendChild(values)
+        this.append(line)
+    }
+
     alert(message)
     {
         const alert = document.createElement("span")
