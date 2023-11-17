@@ -1,5 +1,10 @@
 class Calculator
 {
+    static capitalize(string)
+    {
+        return string[0].toUpperCase() + string.slice(1)
+    }
+
     static show_element_info(compound)
     {
         if(!(compound.quantity == 1 && compound.elements.length == 1 && compound.elements[0].quantity == 1))
@@ -9,7 +14,9 @@ class Calculator
         const elem_data = elements_data[elem_short_name]
 
         output_ui.clear()
-        output_ui.load_line("Nazwa:", 0, elem_data.full_name)
+        output_ui.show_line("Nazwa:", Calculator.capitalize(elem_data.full_name))
+        output_ui.show_line("Liczba atomowa:", elem_data.atomic_number)
+        output_ui.load_line("Masa atomowa:", elem_data.atomic_weight, "mol")
         try_to_play_sound("show_value")
 
         return true
