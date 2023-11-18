@@ -32,7 +32,3 @@
     overflow-x: hidden;
     pointer-events: none;
 }
-
-.input-text .digit {
-    color: var(--input-digit-color);
-}
