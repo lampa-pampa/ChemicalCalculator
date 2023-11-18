@@ -199,14 +199,14 @@ class Input
                     if(!(char == "0" && !/[0-9]/.test(value[i - 1])))
                     {
                         if(this.number_is_subscripted(value, i))
-                            parsed_value += this.format_char(char, "sub", "digit")
+                            parsed_value += format_char(char, "sub", "digit")
                         else
-                            parsed_value += this.format_char(char, "span", "digit")
+                            parsed_value += format_char(char, "span", "digit")
                     }
                 }
                 else
                 {
-                    parsed_value += this.format_char(char, "span", "chemical-element")
+                    parsed_value += format_char(char, "span", "chemical-element")
                 }
             }
         }
@@ -236,11 +236,6 @@ class Input
             node.parentNode.classList.add("error")
         else
             node.parentNode.classList.remove("error")
-    }
-
-    format_char(char, tag, cls)
-    {
-        return `<${tag} class="${cls}">${char}</${tag}>`
     }
 }
 

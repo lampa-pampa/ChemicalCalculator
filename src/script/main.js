@@ -30,6 +30,11 @@ function get_id(id)
     return document.getElementById(id)
 }
 
+function format_char(char, tag, cls)
+{
+    return `<${tag} class="${cls}">${char}</${tag}>`
+}
+
 function storage_get(property_name)
 {
     return JSON.parse(localStorage.getItem(property_name))
