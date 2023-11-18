@@ -15,7 +15,7 @@ class Calculator
 
         output_ui.clear()
         output_ui.show_line("Nazwa:", Calculator.capitalize(elem_data.full_name))
-        output_ui.show_line("Liczba atomowa:", elem_data.atomic_number)
+        output_ui.show_line("Liczba atomowa:", elem_data.atomic_number.toString())
         output_ui.load_line("Masa atomowa:", elem_data.atomic_weight, "mol")
         try_to_play_sound("show_value")
 
@@ -58,10 +58,39 @@ class Calculator
         return true
     }
 
+    static nwd(a, b)
+    {
+        return b == 0 ? a : Calculator.nwd(b, a % b)
+    }
+
     static calculate_empirical_formula(compound)
     {
-        console.log("empirical_formula")
+        if(compound.elements.length > 1)
+        {
+            let nwd = Calculator.nwd(compound.elements[0].quantity, compound.elements[1].quantity)
+            for(let i = 2; i < compound.elements.length; ++i)
+                nwd = Calculator.nwd(nwd, compound.elements[i].quantity)
 
+            if(nwd > 1)
+            {
+                for(const elem of compound.elements)
+                    elem.quantity /= nwd
+            }
+        }
+            
+        let formula = ""
+
+        for(const elem of compound.elements)
+        {
+            formula += elem.short_name
+            if(elem.quantity > 1)
+                formula += elem.quantity.toString()
+        }
+
+        output_ui.clear()
+        output_ui.show_line("Wzór empiryczny:", formula, true)
+        try_to_play_sound("load_value")
+        
         return true
     }
 
