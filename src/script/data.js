@@ -1,8 +1,12 @@
 const data = 
 {
     max_short_name_length: 2,
-    refresh_value_frame_delay: 30,
-    refresh_value_frame_rate: 50,
+    
+    output: {
+        show_number_frame_delay: 30,
+        show_number_frame_rate: 50,
+        show_string_frame_delay: 200,
+    },
     
     value_precision: 2,
     
