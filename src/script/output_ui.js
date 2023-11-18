@@ -8,11 +8,11 @@ class OutputUI
             const cur_value = parseFloat(node.textContent)
             if(cur_value + diff <= value)
             {
-                node.textContent = (cur_value + diff).toFixed(data.value_precision)
+                node.textContent = (cur_value + diff).toFixed(data.output.value_precision)
             }
             else
             {
-                node.textContent = value.toFixed(data.value_precision)
+                node.textContent = value.toFixed(data.output.value_precision)
                 clearInterval(interval)   
             }
         }, data.output.show_number_frame_rate)

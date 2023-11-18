@@ -6,9 +6,9 @@ const data =
         show_number_frame_delay: 30,
         show_number_frame_rate: 50,
         show_string_frame_delay: 200,
+        value_precision: 2,
     },
     
-    value_precision: 2,
     
     default_settings: {
         music: true,
