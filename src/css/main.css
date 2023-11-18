@@ -43,6 +43,10 @@ svg {
     height: 1em;
 }
 
+.digit {
+    color: var(--input-digit-color);
+}
+
 header {
     display: grid;
     justify-items: center;
