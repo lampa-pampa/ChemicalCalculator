@@ -1,9 +1,9 @@
 class OutputUI
 {
-    smooth_value_refresh(node, value)
+    smooth_show_number(node, value)
     {
         node.textContent = 0
-        const diff = value / data.refresh_value_frame_rate
+        const diff = value / data.output.show_number_frame_delay
         const interval = setInterval(() => {
             const cur_value = parseFloat(node.textContent)
             if(cur_value + diff <= value)
@@ -15,7 +15,37 @@ class OutputUI
                 node.textContent = value.toFixed(data.value_precision)
                 clearInterval(interval)   
             }
-        }, data.refresh_value_frame_delay)
+        }, data.output.show_number_frame_rate)
+    }
+
+    smooth_show_string(node, value, format)
+    {
+        node.textContent = value
+        node.style.width = getComputedStyle(node).width
+        node.textContent = ""
+        let i = 0
+        const interval = setInterval(() => {
+            if(i < value.length)
+            {
+                const char = value[i]
+                if(format)
+                {
+                    if(!isNaN(parseInt(char)))
+                        node.innerHTML += format_char(char, "sub", "digit")
+                    else
+                        node.innerHTML += format_char(char, "span", "chemical-element")
+                }
+                else
+                {
+                    node.textContent += char
+                }
+                ++i
+            }
+            else
+            {
+                clearInterval(interval)
+            }
+        }, data.output.show_string_frame_delay)
     }
 
     create_named_div(cls)
@@ -54,15 +84,15 @@ class OutputUI
 
         line.appendChild(values)
         this.append(line)
-        this.smooth_value_refresh(property_value, value)
+        this.smooth_show_number(property_value, value)
 
         if(second)
         {
-            this.smooth_value_refresh(second_property_value, second_value)
+            this.smooth_show_number(second_property_value, second_value)
         }
     }
 
-    show_line(name, value)
+    show_line(name, value, format = false) 
     {
         const line = this.create_named_div("line")
         const values = this.create_named_div("values")
@@ -71,12 +101,13 @@ class OutputUI
         property_name.textContent = name
         
         const property_value = this.create_named_div("property-value")
-        property_value.textContent = value
         
         line.appendChild(property_name)
         values.appendChild(property_value)
         line.appendChild(values)
         this.append(line)
+
+        this.smooth_show_string(property_value, value, format)
     }
 
     alert(message)
