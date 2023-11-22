@@ -16,7 +16,7 @@ class Calculator
         output_ui.clear()
         output_ui.show_line("Nazwa:", Calculator.capitalize(elem_data.full_name))
         output_ui.show_line("Liczba atomowa:", elem_data.atomic_number.toString())
-        output_ui.load_line("Masa atomowa:", elem_data.atomic_weight, "mol")
+        output_ui.load_line("Masa atomowa:", elem_data.atomic_weight, "u")
         try_to_play_sound("show_value")
 
         return true
@@ -42,15 +42,15 @@ class Calculator
         if(keys.length == 1)
         {
             const elem_name = keys[0]
-            output_ui.load_line("=", counter[elem_name], "mol")
+            output_ui.load_line("=", counter[elem_name], "u")
         }
         else
         {
-            output_ui.load_line("Całkowita masa:", total_weight, "mol")
+            output_ui.load_line("Całkowita masa:", total_weight, "u")
             for(const elem_name in counter)
             {
                 const percents = (counter[elem_name] / total_weight * 100)
-                output_ui.load_line(`${elem_name}:`, counter[elem_name], "mol", percents, "%", true)
+                output_ui.load_line(`${elem_name}:`, counter[elem_name], "u", percents, "%", true)
             }
         }
         try_to_play_sound("load_value")
