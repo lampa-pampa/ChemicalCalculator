@@ -265,11 +265,10 @@ function handleInnerInputKeyDown(e)
 
 function handleInnerInputInput(e)
 {
-    if(input.state.pressed_key === "Enter")
-        get_id("calculate-btn").click()
-
     input.refresh_value(e.target)
     input.refresh_cursor(e.target)
+    if(input.state.pressed_key === "Enter")
+        get_id("calculate-btn").click()
 }
 
 function handleCalculateBtnClick(e)
