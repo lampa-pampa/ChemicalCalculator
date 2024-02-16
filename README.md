@@ -4,5 +4,5 @@ It can:
 * calculate percentage composition
 * display element info
 * convert to empirical formula
-
-  It's doesn't support parentheses yet.
+  
+It's doesn't support parentheses yet.
