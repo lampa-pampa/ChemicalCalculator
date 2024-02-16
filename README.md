@@ -1,4 +1,4 @@
-# kalkulator_chemiczny  
+# ChemicalCalculator 
 This is chamical calculator created in JS.  
 It can:  
 * calculate percentage composition
