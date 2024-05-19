@@ -93,18 +93,4 @@ class Calculator
         
         return true
     }
-
-    static calculate_group_formula(compound)
-    {
-        console.log("group_formula")
-
-        return true
-    }
-
-    static calculate_structural_formula(compound)
-    {
-        console.log("structural_formula")
-        
-        return true
-    }
 }
