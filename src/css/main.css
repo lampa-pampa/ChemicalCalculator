@@ -28,7 +28,7 @@ main {
     align-content: start;
     justify-items: center;
     row-gap: calc(2 * var(--main-gap));
-    padding-top: var(--main-gap);
+    padding-top: calc(6 * var(--main-gap));
 }
 
 pre {
